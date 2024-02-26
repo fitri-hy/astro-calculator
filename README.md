@@ -1,5 +1,7 @@
 # Calculator Astro Framework
 
+<img src="./Screenshot(3).png" width="100%"/>
+
 <h2>Clone & Install Project</h2>
 <ul>
   <li>git clone https://github.com/fitri-hy/astro-calculator.git</li>
