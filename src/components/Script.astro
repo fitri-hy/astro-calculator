@@ -1,0 +1,65 @@
+---
+
+---
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+
+    let result_historyDiv = document.querySelector('.result_history');
+    let screen = document.querySelector('.screen');
+    let buttons = document.querySelectorAll('.btn');
+    let result_history = '';
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            handleButtonClick(button.innerText);
+        });
+    });
+
+    function handleButtonClick(value) {
+        if (value === 'C') {
+            clearAll();
+        } else if (value === 'DEL') {
+            deleteLastChar();
+        } else if (value === '=') {
+            evaluateExpression();
+        } else {
+            appendToScreen(value);
+        }
+    }
+
+    function clearAll() {
+        screen.textContent = '';
+        result_history = '';
+        updateresult_history();
+    }
+
+    function deleteLastChar() {
+        let currentText = screen.textContent;
+        screen.textContent = currentText.slice(0, -1);
+    }
+
+    function appendToScreen(value) {
+        screen.textContent += value;
+    }
+
+    function evaluateExpression() {
+        try {
+            let expression = screen.textContent;
+            let result = eval(expression);
+
+            result = parseFloat(result.toFixed(5));
+
+            result_history = expression + ' = ' + result;
+            screen.textContent = result;
+            updateresult_history();
+        } catch (error) {
+            screen.textContent = 'Error';
+        }
+    }
+
+    function updateresult_history() {
+        result_historyDiv.textContent = result_history;
+    }
+});
+</script>
